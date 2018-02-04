@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="add()" novalidate>
+  <mat-form-field>
+    <input matInput formControlName="text" type="text" placeholder="Enter todo..." required>
+    <mat-error *ngIf="form.get('text').hasError('required')">Can't create a todo with no text.</mat-error>
+  </mat-form-field>
+  <button mat-raised-button type="submit" [disabled]="form.invalid">
+    Add Todo
+  </button>
+</form>
