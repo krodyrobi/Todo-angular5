@@ -1,5 +1,9 @@
 export class Todo {
   id?: number;
-  text = '';
+  text: string;
   completed = false;
+
+  constructor(init?: Partial<Todo>) {
+    Object.assign(this, init);
+  }
 }

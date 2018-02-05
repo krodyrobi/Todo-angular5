@@ -1,1 +1,1 @@
-import {Todo} from './todo';
+export {Todo} from './todo';
