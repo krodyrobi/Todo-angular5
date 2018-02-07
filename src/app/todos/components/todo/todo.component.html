@@ -1,0 +1,10 @@
+<div *ngIf="todo">
+  <a (click)="toggle.next(todo)" aria-label="Toggle completion">
+    <mat-icon role="img" aria-hidden="true">{{getIcon()}}</mat-icon>
+  </a>
+  <a *ngIf="todo.completed" (click)="remove.next(todo)" aria-label="Delete">
+    <mat-icon role="img" aria-hidden="true">delete</mat-icon>
+  </a>
+
+  <span [ngClass]="{'strikethrough': todo.completed}">{{todo.text}}</span>
+</div>

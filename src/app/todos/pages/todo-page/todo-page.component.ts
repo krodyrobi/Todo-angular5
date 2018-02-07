@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+
 import {Todo} from '@app/todos/models';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {TodoAdd, TodoGet, TodoRemove, TodoToggle} from '@app/todos/actions';
+import {selectAllTodos, State} from '@app/todos/reducers';
 
 
 @Component({
@@ -9,21 +13,25 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
   styleUrls: ['./todo-page.component.css']
 })
 export class TodoPageComponent implements OnInit {
-  todos$: BehaviorSubject<Todo[]>;
-  private id = 0;
-  private todoStore: Todo[] = [
-    new Todo({id: this.id++, text: 'random'})
-  ];
+  todos$: Observable<Todo[]>;
 
-  constructor() {
+  constructor(private store: Store<State>) {
   }
 
   ngOnInit() {
-    this.todos$ = new BehaviorSubject<Todo[]>(this.todoStore);
+    this.todos$ = this.store.select(selectAllTodos);
+    this.store.dispatch(new TodoGet());
   }
 
   todoAdded(text) {
-    this.todoStore.push(new Todo({id: this.id++, text: text}));
-    this.todos$.next(this.todoStore);
+    this.store.dispatch(new TodoAdd(text));
+  }
+
+  toggleTodo(todo: Todo) {
+    this.store.dispatch(new TodoToggle(todo));
+  }
+
+  removeTodo(todo: Todo) {
+    this.store.dispatch(new TodoRemove(todo.id));
   }
 }

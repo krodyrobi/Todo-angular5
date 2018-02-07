@@ -6,13 +6,25 @@
     "module": "es2015",
     "types": [],
     "paths": {
-      "@app": ["app"],
-      "@app/*": ["app/*"],
-      "@core": ["app/_core"],
-      "@core/*": ["app/_core/*"],
-      "@shared": ["app/_shared"],
-      "@shared/*": ["app/_shared/*"]
-    },
+      "@app": [
+        "app"
+      ],
+      "@app/*": [
+        "app/*"
+      ],
+      "@core": [
+        "app/_core"
+      ],
+      "@core/*": [
+        "app/_core/*"
+      ],
+      "@shared": [
+        "app/_shared"
+      ],
+      "@shared/*": [
+        "app/_shared/*"
+      ]
+    }
   },
   "exclude": [
     "test.ts",
